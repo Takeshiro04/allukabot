@@ -350,7 +350,6 @@ def clear_gbans(bot: Bot, update: Update):
 
 @run_async
 def check_gbans(bot: Bot, update: Update):
-    '''By @TheRealPhoenix'''
     banned = sql.get_gban_list()
     deleted = 0
     for user in banned:
