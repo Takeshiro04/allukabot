@@ -1,18 +1,18 @@
 import html
 import random
 import time
-
 from typing import List
-
+from alluka import dispatcher, OWNER_ID, DEV_USERS, SUDO_USERS, SUPPORT_USERS, WHITELIST_USERS
 from telegram import Bot, Update, ParseMode
 from telegram.ext import CommandHandler, run_async
-
 import alluka.modules.fun_strings as fun_strings
-
 from alluka import dispatcher
 from alluka.modules.disable import DisableAbleCommandHandler
 from alluka.modules.helper_funcs.chat_status import is_user_admin
 from alluka.modules.helper_funcs.extraction import extract_user
+from alluka.modules.helper_funcs.chat_status import user_admin, sudo_plus
+from alluka.modules.log_channel import loggable
+
 
 
 @run_async
@@ -32,7 +32,8 @@ def slap(bot: Bot, update: Update, args: List[str]):
     user_id = extract_user(message, args)
 
     if user_id == bot.id:
-        temp = random.choice(fun_strings.SLAP_alluka_TEMPLATES)
+        temp = random.choice(fun_strings.SLAP_ALLUKA_TEMPLATES)
+         
 
         if type(temp) == list:
             if temp[2] == "tmute":
@@ -70,6 +71,7 @@ def slap(bot: Bot, update: Update, args: List[str]):
     reply_text(reply, parse_mode=ParseMode.HTML)
 
 
+
 @run_async
 def roll(bot: Bot, update: Update):
     update.message.reply_text(random.choice(range(1, 7)))
@@ -79,12 +81,43 @@ def roll(bot: Bot, update: Update):
 def toss(bot: Bot, update: Update):
     update.message.reply_text(random.choice(fun_strings.TOSS))
 
+@run_async
+@sudo_plus
+def insult(bot: Bot, update: Update):
+    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text(random.choice(fun_strings.ALLUKA_INSULT))
 
 @run_async
+@sudo_plus
 def abuse(bot: Bot, update: Update):
     reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-    reply_text(random.choice(fun_strings.ABUSE_STRINGS))
+    reply_text(random.choice(fun_strings.ABUSE_STRINGS),parse_mode=ParseMode.MARKDOWN)
 
+@run_async
+@sudo_plus
+def gay(bot: Bot, update: Update):
+    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text(random.choice(fun_strings.GAY),parse_mode=ParseMode.MARKDOWN)
+
+@run_async
+@sudo_plus
+def rape(bot: Bot, update: Update):
+    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text(random.choice(fun_strings.RAPE_STRINGS),parse_mode=ParseMode.MARKDOWN)
+
+@run_async
+def pro(bot: Bot, update: Update):
+    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text(random.choice(fun_strings.PRO_STRINGS),parse_mode=ParseMode.MARKDOWN)
+
+@run_async
+@sudo_plus
+def send(bot: Bot, update: Update):
+    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    message = update.effective_message
+    text = message.text[len('/send '):]
+    reply_text(text,parse_mode=ParseMode.MARKDOWN)
+    message.delete()
 
 @run_async
 def shrug(bot: Bot, update: Update):
@@ -147,6 +180,13 @@ BLUETEXT_HANDLER = DisableAbleCommandHandler("bluetext", bluetext)
 RLG_HANDLER = DisableAbleCommandHandler("rlg", rlg)
 DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
+ABUSE_HANDLER = CommandHandler("abuse", abuse)
+INSULT_HANDLER = CommandHandler("insult", insult)
+GAY_HANDLER = CommandHandler("gay", gay)
+PRO_HANDLER = DisableAbleCommandHandler("pro", pro)
+SEND_HANDLER = DisableAbleCommandHandler("send", send)
+RAPE_HANDLER = CommandHandler("rape", rape)
+
 
 dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
@@ -157,7 +197,13 @@ dispatcher.add_handler(BLUETEXT_HANDLER)
 dispatcher.add_handler(RLG_HANDLER)
 dispatcher.add_handler(DECIDE_HANDLER)
 dispatcher.add_handler(TABLE_HANDLER)
+dispatcher.add_handler(ABUSE_HANDLER)
+dispatcher.add_handler(INSULT_HANDLER)
+dispatcher.add_handler(GAY_HANDLER)
+dispatcher.add_handler(PRO_HANDLER)
+dispatcher.add_handler(SEND_HANDLER)
+dispatcher.add_handler(RAPE_HANDLER)
 
 __mod_name__ = "Fun"
-__command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table"]
-__handlers__ = [RUNS_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER, DECIDE_HANDLER, TABLE_HANDLER]
+__command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table" , "abuse", "insult", "gay", "pro", "rape"]
+__handlers__ = [RUNS_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER, DECIDE_HANDLER, TABLE_HANDLER,ABUSE_HANDLER,INSULT_HANDLER,GAY_HANDLER,PRO_HANDLER,RAPE_HANDLER]
