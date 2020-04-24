@@ -165,12 +165,12 @@ def send_start(bot, update):
         pass
 
     chat = update.effective_chat  # type: Optional[Chat]
-    text = "Heya there, my name is αℓℓυкα (アルカ゠ゾルディック, Aruka Zorudikku)! "
-    text += "\nI'm the second youngest child of Silva and Kikyo Zoldyck. Under unknown circumstances, I was possessed by a mysterious Dark Continent creature, My family named Nanika.."
-    text += "\n\n𝕴𝖋 𝖞𝖔𝖚'𝖗𝖊 𝖓𝖎𝖈𝖊 𝖙𝖔 𝖒𝖊, 𝖞𝖔𝖚 𝖍𝖆𝖛𝖊 𝖙𝖔 𝖇𝖊 𝖓𝖎𝖈𝖊 𝖙𝖔 𝕹𝖆𝖓𝖎𝖐𝖆 𝖙𝖔𝖔!! 𝕴𝖋 𝖞𝖔𝖚'𝖗𝖊 𝖌𝖔𝖎𝖓𝖌 𝖙𝖔 𝖕𝖗𝖔𝖙𝖊𝖈𝖙 𝖒𝖊, 𝖞𝖔𝖚 𝖍𝖆𝖛𝖊 𝖙𝖔 𝖕𝖗𝖔𝖙𝖊𝖈𝖙 𝕹𝖆𝖓𝖎𝖐𝖆 𝖙𝖔𝖔!! 𝕭𝖚𝖙 𝖎𝖋 𝖞𝖔𝖚'𝖗𝖊 𝖌𝖔𝖎𝖓𝖌 𝖙𝖔 𝖇𝖊 𝖒𝖊𝖆𝖓 𝖙𝖔 𝕹𝖆𝖓𝖎𝖐𝖆, 𝕴 𝖍𝖆𝖙𝖊 𝖞𝖔𝖚!!!"  
+    text = "Heya there, my name is Yukine! "
+    text += "\nI'm a young boy who's a spirit and Yato's Divine Weapon and is called Sekki."
+    text += "\n\nThere's actually nothing much about me."  
 
     keyboard = [[InlineKeyboardButton(text="❓ Help", callback_data="help_back"),InlineKeyboardButton(text=" 👥 Support Chat.",url="https://telegram.dog/allukatm")]]
-    keyboard += [[InlineKeyboardButton(text="🔌 Add me",url="http://t.me/zoldycktmbot?startgroup=true"),InlineKeyboardButton(text="👤 Contact creator",url="https://telegram.dog/zerotwopmbot")]]
+    keyboard += [[InlineKeyboardButton(text="🔌 Add me",url="http://t.me/MrYukine_bot?startgroup=true"),InlineKeyboardButton(text="👤 Contact creator",url="https://telegram.dog/zerotwopmbot")]]
 
     update.effective_message.reply_photo(img,text, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode=ParseMode.MARKDOWN)
 
