@@ -28,7 +28,7 @@ from alluka.modules.connection import connected
 
 
 HELP_STRINGS = """
-Hey there! My name is *{}*.
+Hey there! My name is Yukine.
 I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
 the things I can help you with.
 
@@ -69,7 +69,7 @@ USER_SETTINGS = {}
 
 GDPR = []
 
-img = "https://telegra.ph/file/1ca41b5335290524eee7d.jpg"
+img = "https://telegra.ph/file/7ae178faf32fce48b16a3.jpg"
 
 for module_name in ALL_MODULES:
     imported_module = importlib.import_module("alluka.modules." + module_name)
